@@ -1,4 +1,47 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<h3> Exemplo 1 </h3>
+<ul>
+  <li *ngFor="let name of names">
+    {{name}}
+  </li>
+</ul>
+
+<h3> Exemplo 2 </h3>
+<ul *ngFor="let name of names, let i=index">
+  <li> O nome da pessoa é: {{name}}, e está na posição {{i + 1}} </li>
+</ul>
+
+<h3> Exemplo 3 </h3>
+<p *ngIf="names.length"> Foram encontrados nomes usando *ngIf</p>
+<p *ngIf="!names.length"> Nenhum nome encontrado, usando *ngIf</p>
+<p [hidden]="names.length"> Nenhum nome encontrado, usando hidden</p>
+
+<h3> Exemplo 4 </h3>
+<input #box placeholder="Digite um nome" (keyup)="search(box.value)"/>
+
+<h3> Exemplo 5 </h3>
+<p> Lista de nomes filtrados </p>
+<ul *ngFor="let name of filteredNames">
+  <li> {{name}} </li>
+</ul>
+
+<h3> Exemplo 6 </h3>
+<p> Salario total: <b>{{getFullValue()}}</b> </p>
+
+<h3> Exemplo 7 </h3>
+<input #personId placeholder="Digite um id" />
+<button (click)="result = searchById(personId.value)"> Buscar id </button>
+<p *ngIf="result != undefined"> {{result.id}} - {{result.name}}</p>
+
+<h3> Exemplo 8 </h3>
+<input #percent placeholder="Digite o percentual" />
+<button (click)="increaseSalary(percent.value)"> Aumentar salário </button>
+
+<h3> Exemplo 9 </h3>
+<p>{{checkSalary(500)?'Todo mundo ganha mais que 500':'nem todo mundo ganha mais que 500'}}</p>
+
+<h3> Exemplo 10 </h3>
+<input #searchField placeholder="Digite um critério de busca" (keyup)="searchedPersons = multipleSearch(searchField.value)" />
+
+<ul *ngFor="let person of searchedPersons">
+  <li> {{person.id}} - {{person.name}} - {{person.salary}} </li>
+</ul>
